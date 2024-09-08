@@ -1,0 +1,1 @@
+cout<< "MAX IS:"<<ans;
