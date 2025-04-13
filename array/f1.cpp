@@ -16,14 +16,14 @@ int32_t main() {
 
         vector<vector<int>> grid(n, vector<int>(m));
 
-        int count = 1;
+        // Start filling the grid row by row
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
-                grid[i][j] = count;
-                count = (count % k) + 1;
+                grid[i][j] = ((i + j) % k) + 1;
             }
         }
 
+        // Output the grid
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
                 cout << grid[i][j] << " ";
