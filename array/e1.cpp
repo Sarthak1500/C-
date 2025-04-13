@@ -19,13 +19,13 @@ int32_t main() {
             cin >> a[i];
         }
 
-        int max_sum = LLONG_MIN;  // To store the maximum XOR sum
+        int max_sum = LLONG_MIN;  
         for (int k = 0; k < n; ++k) {
             int current_sum = 0;
             for (int i = 0; i < n; ++i) {
                 current_sum += (a[k] ^ a[i]);
             }
-            max_sum = max(max_sum, current_sum);  // Update max sum
+            max_sum = max(max_sum, current_sum);  
         }
 
         cout << max_sum << '\n';
