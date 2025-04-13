@@ -19,13 +19,33 @@ int32_t main() {
             cin >> a[i];
         }
 
-        int max_sum = LLONG_MIN;  
+        vector<int> bit_count(30, 0);
+        
+        for (int i = 0; i < n; ++i) {
+            for (int bit = 0; bit < 30; ++bit) {
+                if (a[i] & (1 << bit)) {
+                    bit_count[bit]++;
+                }
+            }
+        }
+
+        int max_sum = LLONG_MIN;
+
         for (int k = 0; k < n; ++k) {
             int current_sum = 0;
-            for (int i = 0; i < n; ++i) {
-                current_sum += (a[k] ^ a[i]);
+            
+            for (int bit = 0; bit < 30; ++bit) {
+                int cnt1 = bit_count[bit];
+                int cnt0 = n - cnt1;
+                
+                if (a[k] & (1 << bit)) {
+                    current_sum += cnt0 * (1 << bit);
+                } else {
+                    current_sum += cnt1 * (1 << bit);
+                }
             }
-            max_sum = max(max_sum, current_sum);  
+
+            max_sum = max(max_sum, current_sum);
         }
 
         cout << max_sum << '\n';
